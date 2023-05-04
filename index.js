@@ -13,7 +13,17 @@ app.get('/recipes',(req, res)=>{
     res.send(recipes)
 })
 
+app.get('/recipes/:id',(req,res)=>{
+    const id = req.params.id;
+    const selectedRecipes = recipes.find(recipe => recipe.postId == id);
+    res.send(selectedRecipes)
+})
 
+app.get('/recipes/chef/:id', (req, res) => {
+    const id = req.params.id;
+    const selectedChef = recipes.filter(recipe => recipe.chef_id == id);
+    res.send(selectedChef);
+  });
 
 
 app.listen(port, ()=>{
